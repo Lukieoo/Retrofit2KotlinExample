@@ -20,12 +20,12 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
 
-        val retrofit2 = Retrofit.Builder()
-            .baseUrl("https://jsonplaceholder.typicode.com")
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
+//        val retrofit2 = Retrofit.Builder()
+//            .baseUrl("https://jsonplaceholder.typicode.com")
+//            .addConverterFactory(GsonConverterFactory.create())
+//            .build()
 
-        val api = retrofit2.create(ApiService::class.java)
+        val api = RetrofitClientInstance.getRetrofitInstance()!!.create(ApiService::class.java)
         api.fetchAllUsers().enqueue(object : Callback<List<User>> {
             override fun onResponse(call: Call<List<User>>, response: Response<List<User>>) {
 
